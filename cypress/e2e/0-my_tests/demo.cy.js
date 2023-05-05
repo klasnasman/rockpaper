@@ -5,11 +5,11 @@ describe("demo tests", () => {
     cy.clock();
     cy.visit("http://localhost:3005");
 
-    // Stub out the Math.random() function to always return 0.5 (rock)
+    // Given
     cy.window().then((win) => {
       cy.stub(win.Math, "random").returns(0.5);
     });
-    // Click the "scissors" button 3 times to achieve a win streak of 3
+    // When
     cy.get("button").contains("scissors").click();
     cy.get('[data-cy="resultMsg"]').should("contain", "player");
     cy.get("button").contains("scissors").click();
@@ -17,7 +17,7 @@ describe("demo tests", () => {
     cy.get("button").contains("scissors").click();
     cy.get('[data-cy="resultMsg"]').should("contain", "player");
 
-    // Verify that the high score has been updated to 3
+    // Then
     cy.get('[data-cy="highScore"]').should("contain", "3");
   });
 });
