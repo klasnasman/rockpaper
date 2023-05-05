@@ -5,8 +5,9 @@ function ResultMessage(props) {
 
   return (
     <>
-      <p>Your choice: {playerChoice}</p>
-      <p>Computers choice: {computerChoice}</p>
+      <p>
+        (Player) {playerChoice} vs {computerChoice} (Computer)
+      </p>
       <br />
       <p>{result}</p>
     </>
