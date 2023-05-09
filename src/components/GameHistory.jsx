@@ -6,7 +6,7 @@ function GameHistory(props) {
   return (
     <div className="sidebar__history">
       <ul className="history__ul" data-cy="resultMsg">
-        {gameHistory.map((game, index) => (
+        {[...gameHistory].reverse().map((game, index) => (
           <li
             className={`history__li ${
               game.winner === "player" ? "winner" : ""

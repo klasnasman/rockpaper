@@ -144,10 +144,7 @@ li {
 
 .history__ul {
   overflow: hidden;
-  max-height: 200px;
-  display: flex;
-  overflow-y: scroll;
-  flex-direction: column-reverse;
+  max-height: 28ch;
 }
 
 ul:nth-of-type(1n+11) {

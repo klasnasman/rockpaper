@@ -98,6 +98,8 @@ export default function useGameLogic(playerNames, setScore, setGameHistory) {
             : winner
         );
         setGameHistory((prevHistory) => [...prevHistory, gameInfo]);
+        
+        
       }
     }
   }
