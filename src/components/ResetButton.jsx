@@ -1,11 +1,14 @@
-import React from 'react';
+import React from "react";
 
 function ResetButton(props) {
   const { onClick } = props;
 
   return (
-    <div className='clear__button'>
-    <button className='clear__btn btn' onClick={onClick}>Reset</button></div>
+    <div className="reset__button">
+      <button className="btn btn--reset" onClick={onClick}>
+        Reset
+      </button>
+    </div>
   );
 }
 

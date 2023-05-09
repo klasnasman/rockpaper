@@ -1,141 +1,96 @@
-import React, { useState, useEffect } from "react";
-import OptionButton from "./components/OptionButton";
+import React, { useState } from "react";
+import PlayerSelectionModal from "./components/PlayerSelectionModal";
+import OptionButtons from "./components/OptionButtons";
 import ResultMessage from "./components/ResultMessage";
 import GameHistory from "./components/GameHistory";
 import ResetButton from "./components/ResetButton";
-import HighScore from "./components/HighScore";
+import ScoreBoard from "./components/ScoreBoard";
+import useGameLogic from "./hooks/useGameLogic";
 
 const options = ["rock", "paper", "scissors"];
-
-function handleComputerChoice() {
-  return options[Math.floor(Math.random() * options.length)];
-}
-
-function calculateWinner(playerOption, computerOption) {
-  if (playerOption === computerOption) {
-    return "tie";
-  } else if (
-    (playerOption === "rock" && computerOption === "scissors") ||
-    (playerOption === "paper" && computerOption === "rock") ||
-    (playerOption === "scissors" && computerOption === "paper")
-  ) {
-    return "player";
-  } else {
-    return "computer";
-  }
-}
-
-function updateScore(prevScore, winner) {
-  if (winner === "player") {
-    return { wins: prevScore.wins + 1, streak: prevScore.streak + 1 };
-  } else {
-    return { ...prevScore, streak: 0 };
-  }
-}
-
-function saveGameInfo(playerOption, computerOption, winner) {
-  const now = new Date();
-  const time = now.toLocaleTimeString([], {
-    hour: "2-digit",
-    minute: "2-digit",
-  });
-
-  return {
-    time: time,
-    playerChoice: playerOption,
-    computerChoice: computerOption,
-    winner: winner,
-  };
-}
-
-function getHighScore() {
-  return parseInt(localStorage.getItem("highScore")) || 0;
-}
-
-function saveHighScore(highScore) {
-  localStorage.setItem("highScore", highScore.toString());
-}
+const buttonColors = {
+  rock: "btn--rock",
+  paper: "btn--paper",
+  scissors: "btn--scissors",
+};
 
 function App() {
-  const [playerChoice, setPlayerChoice] = useState("");
-  const [computerChoice, setComputerChoice] = useState("");
-  const [result, setResult] = useState("");
-  const [score, setScore] = useState({ wins: 0, streak: 0 });
+  const [modalVisible, setModalVisible] = useState(true);
   const [gameHistory, setGameHistory] = useState([]);
-  const [highScore, setHighScore] = useState(getHighScore());
+  const [playerNames, setPlayerNames] = useState(["Player 1", "Computer"]);
+  const [score, setScore] = useState({ player1Wins: 0, player2Wins: 0 });
 
-  useEffect(() => {
-    if (score.streak > highScore) {
-      setHighScore(score.streak);
-      saveHighScore(score.streak);
-    }
-  }, [score.streak, highScore]);
+  const {
+    playerChoice,
+    computerChoice,
+    result,
+    currentPlayer,
+    handlePlayerChoice,
+  } = useGameLogic(playerNames, setScore, setGameHistory);
 
-  function handlePlayerChoice(playerOption) {
-    const computerOption = handleComputerChoice();
-    const winner = calculateWinner(playerOption, computerOption);
+  function handleModalClose() {
+    setModalVisible(false);
+  }
 
-    setPlayerChoice(playerOption);
-    setComputerChoice(computerOption);
-
-    setResult(
-      winner === "tie"
-        ? "It's a tie!"
-        : winner === "player"
-        ? "You win!"
-        : "You lose!"
-    );
-    setScore((prevScore) => updateScore(prevScore, winner));
-
-    const gameInfo = saveGameInfo(playerOption, computerOption, winner);
-    setGameHistory((prevHistory) => [...prevHistory, gameInfo]);
+  function handleModalStart(player1, player2) {
+    setPlayerNames([player1, player2]);
+    setModalVisible(false);
   }
 
   function handleReset() {
     setGameHistory([]);
-    setScore({ streak: 0 });
+    setScore({ player1Wins: 0, player2Wins: 0 });
   }
 
   return (
-    <div className="game__container">
-      <div className="game__sidebar-left">
-        <h2 className="game__heading">
-          Rock,
-          <br />
-          Paper,
-          <br />
-          Scissors
+    <div className="container">
+      <div className="sidebar--left">
+        <h2 className="sidebar__heading">
+          <a href="/">
+            Rock,
+            <br />
+            Paper,
+            <br />
+            Scissors.
+          </a>
         </h2>
       </div>
 
-      <main className="game__main">
-        <div className="streak"></div>
+      <main className="main">
         <div className="option__buttons">
           {options.map((playerOption) => (
-            <OptionButton
+            <OptionButtons
               key={playerOption}
               option={playerOption}
               onClick={handlePlayerChoice}
+              buttonColors={buttonColors}
             />
           ))}
         </div>
-        <div className="result">
+        <div className="main__result">
           <ResultMessage
             playerChoice={playerChoice}
             computerChoice={computerChoice}
             result={result}
+            playerNames={playerNames}
+            currentPlayer={currentPlayer}
           />
         </div>
       </main>
 
-      <div className="game__sidebar-right">
-        <div className="sidebar__right_score">
+      <div className="sidebar--right">
+        <div className="sidebar__score">
           <ResetButton onClick={handleReset} />
-          <p>Win streak: {score.streak}</p>
-          <HighScore winStreak={score.streak} />
+          <ScoreBoard score={score} playerNames={playerNames} />
         </div>
         <GameHistory gameHistory={gameHistory} />
       </div>
+
+      <PlayerSelectionModal
+        isOpen={modalVisible}
+        onClose={handleModalClose}
+        onStart={handleModalStart}
+      />
     </div>
   );
 }

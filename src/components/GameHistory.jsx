@@ -4,7 +4,7 @@ function GameHistory(props) {
   const { gameHistory } = props;
 
   return (
-    <div className="history">
+    <div className="sidebar__history">
       <ul className="history__ul" data-cy="resultMsg">
         {gameHistory.map((game, index) => (
           <li

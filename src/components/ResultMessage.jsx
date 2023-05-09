@@ -1,16 +1,38 @@
 import React from "react";
 
-function ResultMessage(props) {
-  const { playerChoice, computerChoice, result } = props;
+function ResultMessage({
+  playerChoice,
+  computerChoice,
+  result,
+  playerNames,
+  currentPlayer,
+}) {
+  if (!playerChoice || !computerChoice) {
+    return (
+      <p>
+        {playerNames[1] === "Computer"
+          ? "It's player's turns"
+          : `It's ${playerNames[currentPlayer]}'s turn`}
+      </p>
+    );
+  }
 
   return (
-    <>
+    <div>
       <p>
-        (Player) {playerChoice} vs {computerChoice} (Computer)
+        It's {playerNames[currentPlayer]}'s turn <br />
+        <br />({playerNames[0]}) {playerChoice} vs {computerChoice} (
+        {playerNames[1]})
       </p>
-      <br />
-      <p>{result}</p>
-    </>
+      <>
+        <br />
+        {result === "It's a tie!"
+          ? result
+          : result.includes("wins!")
+          ? result
+          : `${playerNames[0]} wins!`}
+      </>
+    </div>
   );
 }
 

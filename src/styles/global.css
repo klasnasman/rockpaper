@@ -1,14 +1,31 @@
-* {
-  font-weight: var(--fw-regular);
+html {
+  background-color: var(--clr-bg);
 }
 
 body {
+  font-weight: var(--fw-regular);
   font-family: var(--ff-body);
   font-size: var(--step-0);
   color: var(--clr-text);
-  background-color: var(--clr-bg);
   text-transform: uppercase;
   overflow: hidden;
+}
+
+#root {
+  min-height: 100svh;
+  /* border: 8px solid; */
+  /* border-image: linear-gradient(45deg, purple, orange) 1; */
+  transition: all 0.3s;
+}
+
+/* MISC */
+a {
+  text-decoration: none;
+  color: var(--clr-text);
+}
+
+input[placeholder] {
+  padding-left: 4px;
 }
 
 .flow {
@@ -20,108 +37,177 @@ body {
   margin-top: var(--flow-space);
 }
 
-#root {
-  min-height: 100svh;
+li {
+  list-style-type: none;
+}
+
+/* BUTTONS */
+.btn {
+  border: 1px solid black;
+  padding-inline: var(--spacer-s);
+  text-transform: uppercase;
+  border-radius: 999px;
+  box-shadow: 2px 2px black;
+  transition: all 0.1s;
+}
+
+.btn:hover {
+  box-shadow: 0px 0px black;
+}
+
+/* .btn-rock:hover {
+  background-color: var(--clr-green);
+  color: white;
+}
+
+.btn-paper:hover {
+  background-color: var(--clr-green);
+  color: white;
+}
+
+.btn-scissors:hover {
+  background-color: var(--clr-green);
+  color: white;
+} */
+
+.btn--green {
+  background-color: var(--clr-green);
+  color: white;
+}
+
+.btn--reset {
+  background-color: var(--clr-red);
+  color: white;
 }
 
 .option__buttons {
   text-align: center;
-  margin-bottom: var(--spacer-s);
+  margin-bottom: var(--spacer-m);
 }
 
 .option__buttons button:nth-of-type(even) {
   margin-inline: var(--spacer-xs);
 }
 
-.option__btn:hover {
-  background-color: var(--clr-green);
-  color: var(--clr-bg);
-}
-
-.clear__btn {
-  background-color: var(--clr-red);
-  color: var(--clr-bg);
-}
-
-.btn {
-  border: 1px solid black;
-  padding-inline: var(--spacer-s);
-  text-transform: uppercase;
-  border-radius: 999px;
-}
-
-header {
-  display: flex;
-  justify-content: center;
-}
-
-.game__container {
+/* APP.JSX */
+.container {
   display: flex;
   flex-direction: row;
   padding-top: 4rem;
-  padding-inline: 10rem;
+  margin-inline: auto;
+  width: clamp(16rem, 90vw, 65rem);
   min-height: calc(100svh - 1rem);
 }
 
-.game__main {
+.main {
   width: 33%;
   order: 2;
 }
 
-.game__sidebar-left {
+.main__result {
+  text-align: center;
+}
+
+.sidebar--left {
   width: 33%;
   order: 1;
+  z-index: 3;
 }
 
-.game__sidebar-right {
-  width: 33%;
-  order: 3;
-  text-align: right;
-}
-
-.sidebar__right_score {
-  display: flex;
-  flex-direction: row-reverse;
-  gap: 0rem 2rem;
-}
-
-.streak {
-  text-align: center;
-}
-
-.result {
-  text-align: center;
-}
-
-.game__heading {
+.sidebar__heading {
   font-size: var(--step-4);
   font-family: var(--ff-heading);
   font-weight: var(--fw-bold);
 }
 
-.history {
-  margin-top: var(--spacer-s);
+.sidebar--right {
+  width: 33%;
+  order: 3;
+  text-align: right;
+}
+
+.sidebar__score {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  gap: var(--spacer-m);
+}
+
+/* GAMEHISTORY.JSX */
+.sidebar__history {
+  margin-top: var(--spacer-m);
 }
 
 .history__ul {
   overflow: hidden;
-  max-height: 70vh;
+  max-height: 200px;
+  display: flex;
   overflow-y: scroll;
+  flex-direction: column-reverse;
 }
 
+ul:nth-of-type(1n+11) {
+  overflow: auto;
+}
+
+/* winner green dot */
 .winner::before {
   content: "";
+  display: inline-block;
   width: 0.25em;
   height: 0.25em;
   border: 4px solid rgb(1, 230, 100);
   box-shadow: inset 0px 0px 10px 2px rgba(0, 255, 182, 0.5),
     0px 0px 4px 0px rgba(1, 230, 100);
   border-radius: 50%;
-  display: inline-block;
   margin-right: 0.34em;
   transition: background-color 0.2s ease;
 }
 
-li {
-  list-style-type: none;
+/* MODAL */
+.modal {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  backdrop-filter: blur(5px);
+}
+
+.modal__content {
+  background-color: var(--clr-bg);
+  padding: var(--spacer-m);
+  position: relative;
+  border: 1px solid black;
+  border-radius: 6px;
+  box-shadow: 2px 2px black;
+  width: fit-content;
+}
+
+.modal__input {
+  display: flex;
+  align-items: center;
+  gap: var(--spacer-s);
+}
+
+.modal__close {
+  position: absolute;
+  color: black;
+  font-size: 28px;
+  right: 10px;
+  top: 0px;
+  font-weight: bold;
+  transition: all 0.1s;
+}
+
+.modal__close:hover,
+.modal__close:focus {
+  color: var(--clr-red);
+  text-decoration: none;
+  cursor: pointer;
 }
