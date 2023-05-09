@@ -2,10 +2,7 @@ import React from "react";
 import { fireEvent, render, screen,  } from "@testing-library/react";
 import App from "../../App";
 // import { gameHistory, setGameHistory } from "../../App";
-import {calculateWinner} from "../../hooks/useGameLogic"
-
-
-
+import {calculateWinner, updateScoreByWinner} from "../../hooks/useGameLogic"
 
 
 
@@ -21,39 +18,7 @@ describe("page", () => {
 
 })
 
-describe("hej", () => {
-
-  // test("set game history", () => {
-  //   //given
-  //   render(<App />)
-  //   const gameInfo = {
-  //     time: (11.30),
-  //     playerChoice: "scissors",
-  //     computerChoice: "paper",
-  //     winner: "player",
-  //   }
-
-  //   //when
-  //   setGameHistory([1,2]);
-  //   console.log(gameHistory)
-  //   //then
-  //   // expect(gameHistory).toBe([])
-
-  // })
-
-  // test("f", () => {
-
-  //   const winner = "tie"
-  //   const prevScore = [1,2]
-
-  //   const outcome = updateScoreByWinner(prevScore, winner)
-
-  //   expect(outcome).toBe([1,2])
-
-    
-  // })
-
-
+describe("calculate winner", () => {
 
   test.each([
     ["paper", "rock", "player"],
@@ -69,6 +34,40 @@ describe("hej", () => {
   })
 
 })
+
+describe("save game info", () => {
+
+})
+
+// går att testa mer här!
+// testa med player och computer som vinnare
+describe("update score by winner", () => {
+
+  test("tie", () => {
+
+    const winner = "tie"
+    const prevScore = [1,2]
+
+    const outcome = updateScoreByWinner(prevScore, winner)
+
+    expect(outcome).toBe(prevScore)
+    
+  })
+})
+
+
+
+
+
+
+
+
+
+
+
+// ANVÄNDARTESTER
+
+
 
 describe("buttons", () => {
 
