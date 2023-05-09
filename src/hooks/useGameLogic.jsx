@@ -47,8 +47,9 @@ function updateScoreByWinner(prevScore, winner) {
   }
 }
 
-
-
 export {
-  calculateWinner, saveGameInfo, updateScoreByWinner, handleComputerChoice
-}
+  calculateWinner,
+  saveGameInfo,
+  updateScoreByWinner,
+  handleComputerChoice,
+};

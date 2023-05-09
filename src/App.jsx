@@ -5,7 +5,12 @@ import ResultMessage from "./components/ResultMessage";
 import GameHistory from "./components/GameHistory";
 import ResetButton from "./components/ResetButton";
 import ScoreBoard from "./components/ScoreBoard";
-import {calculateWinner, saveGameInfo, updateScoreByWinner, handleComputerChoice} from "./hooks/useGameLogic"
+import {
+  calculateWinner,
+  saveGameInfo,
+  updateScoreByWinner,
+  handleComputerChoice,
+} from "./hooks/useGameLogic";
 
 const options = ["rock", "paper", "scissors"];
 const buttonColors = {
@@ -24,12 +29,11 @@ function App() {
   const [result, setResult] = useState("");
   const [currentPlayer, setCurrentPlayer] = useState(0);
 
-  
   function handlePlayerChoice(playerOption) {
     if (playerNames[1] === "Computer") {
       const computerOption = handleComputerChoice();
       const winner = calculateWinner(playerOption, computerOption);
-  
+
       setPlayerChoice(playerOption);
       setComputerChoice(computerOption);
       setResult(
@@ -40,7 +44,7 @@ function App() {
           : "You lose!"
       );
       setScore((prevScore) => updateScoreByWinner(prevScore, winner));
-  
+
       const gameInfo = saveGameInfo(playerOption, computerOption, winner);
       setGameHistory((prevHistory) => [...prevHistory, gameInfo]);
     } else {
@@ -50,7 +54,7 @@ function App() {
       } else {
         const winner = calculateWinner(playerChoice, playerOption);
         setComputerChoice(playerOption);
-  
+
         setResult(
           winner === "tie"
             ? "It's a tie!"
@@ -59,9 +63,9 @@ function App() {
             : `${playerNames[1]} wins!`
         );
         setCurrentPlayer(0);
-  
+
         setScore((prevScore) => updateScoreByWinner(prevScore, winner));
-  
+
         const gameInfo = saveGameInfo(
           playerChoice,
           playerOption,
@@ -72,13 +76,10 @@ function App() {
             : winner
         );
         setGameHistory((prevHistory) => [...prevHistory, gameInfo]);
-        
-        
       }
     }
   }
 
-  
   function handleModalClose() {
     setModalVisible(false);
   }
