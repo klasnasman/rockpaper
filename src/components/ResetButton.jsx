@@ -6,7 +6,7 @@ function ResetButton(props) {
   return (
     <div className="reset__button">
       <button className="btn btn--reset" onClick={onClick}>
-        Reset
+        reset
       </button>
     </div>
   );

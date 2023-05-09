@@ -6,6 +6,7 @@ function handleComputerChoice() {
   return options[Math.floor(Math.random() * options.length)];
 }
 
+//testad
 function calculateWinner(playerOption, computerOption) {
   if (playerOption === computerOption) {
     return "tie";
@@ -20,6 +21,7 @@ function calculateWinner(playerOption, computerOption) {
   }
 }
 
+// KAN TESTAS
 function saveGameInfo(playerOption, computerOption, winner) {
   const now = new Date();
   const time = now.toLocaleTimeString([], {
@@ -111,4 +113,8 @@ export default function useGameLogic(playerNames, setScore, setGameHistory) {
     currentPlayer,
     handlePlayerChoice,
   };
+}
+
+export {
+  calculateWinner
 }
