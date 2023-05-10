@@ -35,8 +35,7 @@ function saveGameInfo(playerOption, computerOption, winner) {
   };
 }
 
-//inte klar!
-//
+//klar
 function updateScoreByWinner(prevScore, winner) {
   if (winner === "player") {
     return { ...prevScore, player1Wins: prevScore.player1Wins + 1 };
