@@ -29,17 +29,22 @@ describe("calculate winner", () => {
 
 describe("save game info", () => {});
 
-// går att testa mer här!
-// testa med player och computer som vinnare
+//klar
 describe("update score by winner", () => {
-  test("tie", () => {
-    const winner = "tie";
-    const prevScore = [1, 2];
+
+  test.each([
+    ["tie", 0, 0],
+    ["player", 1, 0],
+    ["computer", 0, 1]
+  ])("should return the new standings", (winning, playerScore, computerScore) => {
+    const winner = winning;
+    const prevScore = { player1Wins: 0, player2Wins: 0 };
 
     const outcome = updateScoreByWinner(prevScore, winner);
 
-    expect(outcome).toBe(prevScore);
+    expect(outcome).toEqual({ player1Wins: playerScore, player2Wins: computerScore });
   });
+
 });
 
 // ANVÄNDARTESTER
