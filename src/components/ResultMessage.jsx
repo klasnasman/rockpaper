@@ -17,6 +17,8 @@ function ResultMessage({
     );
   }
 
+  const isPlayerVsPlayer = playerNames[1] !== "Computer";
+
   return (
     <div>
       <p>
@@ -28,9 +30,11 @@ function ResultMessage({
         <br />
         {result === "It's a tie!"
           ? result
-          : result.includes("win!")
-          ? `${playerNames[0]} wins!`
-          : `${playerNames[1]} wins!`}
+          : isPlayerVsPlayer
+          ? result.includes(playerNames[0])
+            ? `${playerNames[0]} wins!`
+            : `${playerNames[1]} wins!`
+          : result}
       </>
     </div>
   );
