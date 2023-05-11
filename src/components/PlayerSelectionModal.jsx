@@ -30,7 +30,7 @@ function PlayerSelectionModal({ isOpen, onClose, onStart }) {
             <input name="player1" placeholder="PLAYER 1" required />
             vs
             <input name="player2" placeholder="PLAYER 2" required />
-            <button className="btn btn--green" type="submit">
+            <button data-cy="startBtn" className="btn btn--green" type="submit">
               Start game
             </button>
           </div>
