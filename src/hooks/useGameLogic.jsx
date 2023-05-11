@@ -1,10 +1,10 @@
-// testa om den väljer olika alternativ varje gång
+// TESTAD
 function handleComputerChoice() {
   const options = ["rock", "paper", "scissors"];
   return options[Math.floor(Math.random() * options.length)];
 }
 
-//testad
+// TESTAD
 function calculateWinner(playerOption, computerOption) {
   if (playerOption === computerOption) {
     return "tie";
@@ -19,7 +19,7 @@ function calculateWinner(playerOption, computerOption) {
   }
 }
 
-// KAN TESTAS
+// TESTAD
 function saveGameInfo(playerOption, computerOption, winner) {
   const now = new Date();
   const time = now.toLocaleTimeString([], {
@@ -35,7 +35,7 @@ function saveGameInfo(playerOption, computerOption, winner) {
   };
 }
 
-//klar
+// TESTAD
 function updateScoreByWinner(prevScore, winner) {
   if (winner === "player") {
     return { ...prevScore, player1Wins: prevScore.player1Wins + 1 };
