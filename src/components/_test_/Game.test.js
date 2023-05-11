@@ -20,6 +20,7 @@ describe('Should return random options', () => {
 
   })
 
+
 })
 
 describe("page", () => {
@@ -45,24 +46,7 @@ describe("calculate winner", () => {
   });
 });
 
-describe("save game info", () => {});
-
-//klar
-describe("update score by winner", () => {
-
-  test.each([
-    ["tie", 0, 0],
-    ["player", 1, 0],
-    ["computer", 0, 1]
-  ])("should return the new standings", (winning, playerScore, computerScore) => {
-    const winner = winning;
-    const prevScore = { player1Wins: 0, player2Wins: 0 };
-
-    const outcome = updateScoreByWinner(prevScore, winner);
-
-    expect(outcome).toEqual({ player1Wins: playerScore, player2Wins: computerScore });
-  });
-
+describe("save game info", () => {
   test.each([
     ['paper', 'rock', 'player'],
     ['rock', 'paper', 'computer'],
@@ -86,6 +70,23 @@ describe("update score by winner", () => {
     })
 
   })
+});
+
+//klar
+describe("update score by winner", () => {
+
+  test.each([
+    ["tie", 0, 0],
+    ["player", 1, 0],
+    ["computer", 0, 1]
+  ])("should return the new standings", (winning, playerScore, computerScore) => {
+    const winner = winning;
+    const prevScore = { player1Wins: 0, player2Wins: 0 };
+
+    const outcome = updateScoreByWinner(prevScore, winner);
+
+    expect(outcome).toEqual({ player1Wins: playerScore, player2Wins: computerScore });
+  });
 
 });
 
@@ -140,7 +141,7 @@ describe("buttons", () => {
 
   // })
 
-  test("sholud return the picked value", () => {
+  test("Sholud return the picked value", () => {
     render(<App />);
     const button = screen.getByRole("button", { name: "paper" });
     fireEvent.click(button);
