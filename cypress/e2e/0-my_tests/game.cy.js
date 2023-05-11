@@ -27,5 +27,8 @@ describe("Game tests", () => {
     cy.get('[data-cy="computerBtn"]').click();
     cy.get('[data-cy="resultCy"]').should("include.text", "It's player's turn");
     cy.get('[data-cy="rockBtn"]').click();
+    cy.window().then((win) => {
+      cy.stub(win.Math, "random").returns(0.5);
+    });
   });
 });
