@@ -33,7 +33,7 @@ function App() {
     if (playerNames[1] === "Computer") {
       const computerOption = handleComputerChoice();
       const winner = calculateWinner(playerOption, computerOption);
-
+      
       setPlayerChoice(playerOption);
       setComputerChoice(computerOption);
       setResult(

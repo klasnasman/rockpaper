@@ -4,6 +4,49 @@ import App from "../../App";
 // import { gameHistory, setGameHistory } from "../../App";
 import { calculateWinner, updateScoreByWinner } from "../../hooks/useGameLogic";
 
+describe('Should return random options', () => {
+  
+  test.each([
+    ['rock', 'paper', 'scissors'],
+    ['rock', 'paper', 'scissors'],
+    ['rock', 'paper', 'scissors']
+  ])('Get random option', (options) => {
+    
+    const output = handleComputerChoice(options)
+
+    console.log(output)
+    
+    expect(output).toBe('rock' && 'paper' && 'scissors')
+
+  })
+
+  test.each([
+    ['paper', 'rock', 'player'],
+    ['rock', 'paper', 'computer'],
+    ['rock', 'rock', 'tie']
+  ])('Should save game information', (playerOption, computerOption, winner) => {
+
+    const time = new Date().toLocaleTimeString([], {
+        hour: "2-digit",
+        minute: "2-digit",
+    });
+
+    const savedData = saveGameInfo(playerOption, computerOption, winner)
+
+    console.log(savedData)
+
+    expect(savedData).toEqual({
+      time: time,
+      playerChoice: playerOption,
+      computerChoice: computerOption,
+      winner: winner
+    })
+
+  })
+
+
+})
+
 describe("page", () => {
   test("renders the modal", () => {
     render(<App />);
