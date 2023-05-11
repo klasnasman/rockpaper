@@ -26,7 +26,6 @@ function ResultMessage({
       </p>
       <>
         <br />
-        {console.log(result)}
         {result === "It's a tie!"
           ? result
           : result.includes("win!")
