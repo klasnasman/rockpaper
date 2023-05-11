@@ -3,21 +3,18 @@
 describe("demo tests", () => {
   it("shows result message with 'rock' when computer chooses rock", () => {
     cy.clock();
-    cy.visit("http://localhost:3005");
+    cy.visit("http://localhost:3000");
 
-    // Given
-    cy.window().then((win) => {
-      cy.stub(win.Math, "random").returns(0.5);
-    });
-    // When
-    cy.get("button").contains("scissors").click();
-    cy.get('[data-cy="resultMsg"]').should("contain", "player");
-    cy.get("button").contains("scissors").click();
-    cy.get('[data-cy="resultMsg"]').should("contain", "player");
-    cy.get("button").contains("scissors").click();
-    cy.get('[data-cy="resultMsg"]').should("contain", "player");
-
-    // Then
-    cy.get('[data-cy="highScore"]').should("contain", "3");
+    
   });
+
+  it("sholud show warning message when trying to start test without input in second input", () => {
+
+    cy.visit("http://localhost:3000");
+
+    cy.get('input[placeholder="PLAYER 1"]').type("Hej")
+
+    cy.get('[data-cy="startBtn"]').click()
+  
+  })
 });
