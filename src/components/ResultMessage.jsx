@@ -26,11 +26,12 @@ function ResultMessage({
       </p>
       <>
         <br />
+        {console.log(result)}
         {result === "It's a tie!"
           ? result
-          : result.includes("wins!")
-          ? result
-          : `${playerNames[0]} wins!`}
+          : result.includes("win!")
+          ? `${playerNames[0]} wins!`
+          : `${playerNames[1]} wins!`}
       </>
     </div>
   );
