@@ -20,6 +20,7 @@ function PlayerSelectionModal({ isOpen, onClose, onStart }) {
         </span>
         Play against{" "}
         <button
+          data-cy="computerBtn"
           className="btn btn--green"
           onClick={() => onStart("Player", "Computer")}>
           Computer

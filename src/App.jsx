@@ -14,9 +14,9 @@ import {
 
 const options = ["rock", "paper", "scissors"];
 const buttonColors = {
-  rock: "btn--rock",
-  paper: "btn--paper",
-  scissors: "btn--scissors",
+  rock: "rockBtn",
+  paper: "paperBtn",
+  scissors: "scissorsBtn",
 };
 
 function App() {
@@ -33,7 +33,7 @@ function App() {
     if (playerNames[1] === "Computer") {
       const computerOption = handleComputerChoice();
       const winner = calculateWinner(playerOption, computerOption);
-      
+
       setPlayerChoice(playerOption);
       setComputerChoice(computerOption);
       setResult(
@@ -119,7 +119,7 @@ function App() {
             />
           ))}
         </div>
-        <div className="main__result">
+        <div className="main__result" data-cy="resultCy">
           <ResultMessage
             playerChoice={playerChoice}
             computerChoice={computerChoice}

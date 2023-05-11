@@ -5,8 +5,8 @@ function OptionButtons(props) {
 
   return (
     <button
-      className={`btn ${buttonColors[option]}`}
-      data-cy="optionBtn"
+      className="btn"
+      data-cy={`${buttonColors[option]}`}
       onClick={() => onClick(option)}>
       {option}
     </button>

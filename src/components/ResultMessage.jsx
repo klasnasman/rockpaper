@@ -11,7 +11,7 @@ function ResultMessage({
     return (
       <p>
         {playerNames[1] === "Computer"
-          ? "It's player's turns"
+          ? "It's player's turn"
           : `It's ${playerNames[currentPlayer]}'s turn`}
       </p>
     );
