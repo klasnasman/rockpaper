@@ -13,24 +13,11 @@ describe("modal", () => {
 // ANVÄNDARTESTER
 describe("buttons", () => {
 
-  test('Should update the history list when button is clicked - user against the computer', () => {
-    render(<App />)
-
-    const rockBtn = screen.getByRole('button', {name: 'rock'})
-    fireEvent.click(rockBtn); 
-
-    const historyList = screen.getByRole('list')
-    expect(historyList).toHaveTextContent(/rock vs/i)
-
-  })
-
   test.each([
     "rock",
     "paper",
     "scissors"
-  ])('Should update the history list when button is clicked - user against the computer', (options) => {
-
-    const option = options;
+  ])('Should update the history list when button is clicked - user VS computer', (option) => {
 
     render(<App />)
 
