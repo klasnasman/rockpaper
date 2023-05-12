@@ -18,9 +18,9 @@ Test 3: “Update score by winner” - funktionen. Genom att skicka in värdet f
 
 Användartest:
 
-Test 1: “Should update the history list when button is clicked - user VS computer”. När en av knapparna “rock”, “paper” och “scissors” klickas, ska listan med historik uppdateras med överensstämmande värde. I testet möter spelaren datorn. 
+Test 1: “Should update the history list when button is clicked - user VS computer”. När en av knapparna “rock”, “paper” eller “scissors” klickas, ska listan med historik uppdateras med överensstämmande värde. I testet möter spelaren datorn. 
 
-Test 2: “Reset button sholud remove list”. När man klickar på “reset button” testar vi att scoreboardlistan inte har några children kvar.
+Test 2: “Reset button should remove list”. När man klickar på “reset button” testar vi att scoreboardlistan inte har några children kvar.
 
 Cypress E2E-tester: 
 
