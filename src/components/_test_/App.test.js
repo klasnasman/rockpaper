@@ -29,7 +29,7 @@ describe("buttons", () => {
 
   })
 
-  test("reset button sholud remove list", () => {
+  test("reset button should remove list", () => {
     render(<App />);
     const button = screen.getByRole("button", { name: "reset" });
     fireEvent.click(button);
