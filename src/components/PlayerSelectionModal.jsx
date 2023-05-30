@@ -1,6 +1,8 @@
 import React from "react";
 
-function PlayerSelectionModal({ isOpen, onClose, onStart }) {
+function PlayerSelectionModal(props) {
+  const { isOpen, onClose, onStart } = props;
+
   if (!isOpen) {
     return null;
   }

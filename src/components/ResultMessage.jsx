@@ -1,12 +1,9 @@
 import React from "react";
 
-function ResultMessage({
-  playerChoice,
-  computerChoice,
-  result,
-  playerNames,
-  currentPlayer,
-}) {
+function ResultMessage(props) {
+  const { playerChoice, computerChoice, result, playerNames, currentPlayer } =
+    props;
+
   if (!playerChoice || !computerChoice) {
     return (
       <p>

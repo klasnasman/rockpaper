@@ -1,6 +1,8 @@
 import React from "react";
 
-function ScoreBoard({ score, playerNames }) {
+function ScoreBoard(props) {
+  const { score, playerNames } = props;
+
   return (
     <div className="scoreboard">
       <p data-cy="scoreboardCy">
