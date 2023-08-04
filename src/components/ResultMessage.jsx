@@ -19,12 +19,11 @@ function ResultMessage(props) {
   return (
     <div>
       <p>
-        It's {playerNames[currentPlayer]}'s turn <br />
+        It's {playerNames[currentPlayer]}'s turn
         <br />({playerNames[0]}) {playerChoice} vs {computerChoice} (
         {playerNames[1]})
       </p>
       <>
-        <br />
         {result === "It's a tie!"
           ? result
           : isPlayerVsPlayer
