@@ -157,7 +157,7 @@ li {
 }
 
 .history__ul {
-  overflow: hidden;
+  overflow: scroll;
   max-height: 28ch;
 }
 
