@@ -149,6 +149,10 @@ li {
   .sidebar--right {
     width: unset;
   }
+  
+  .sidebar__heading {
+    text-align: center;
+  }
 }
 
 /* GAMEHISTORY.JSX */
